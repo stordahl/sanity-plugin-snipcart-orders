@@ -1,0 +1,50 @@
+{
+  "name": "sanity-plugin-snipcart-orders",
+  "version": "1.0.0",
+  "description": "A dashboard widget for displaying recent orders from Snipcart",
+  "main": "lib/YourPlugin.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/blkcatstudio/sanity-plugin-snipcart-orders.git"
+  },
+  "keywords": [
+    "sanity",
+    "sanity-plugin"
+  ],
+  "author": "Jacob Størdahl <jacob@stordahl.dev>",
+  "license": "MIT",
+  "dependencies": {
+    "prop-types": "15.7.2"
+  },
+  "devDependencies": {
+    "sanipack": "1.0.3",
+    "prettier": "2.2.1",
+    "eslint": "7.19.0",
+    "eslint-config-prettier": "7.2.0",
+    "eslint-config-sanity": "5.0.0",
+    "eslint-plugin-react": "7.22.0"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/blkcatstudio/sanity-plugin-snipcart-orders/issues"
+  },
+  "homepage": "https://github.com/blkcatstudio/sanity-plugin-snipcart-orders#readme",
+  "prettier": {
+    "semi": false,
+    "printWidth": 100,
+    "bracketSpacing": false,
+    "singleQuote": true
+  },
+  "eslintConfig": {
+    "parser": "sanipack/babel/eslint-parser",
+    "extends": [
+      "sanity",
+      "sanity/react",
+      "prettier",
+      "prettier/react"
+    ]
+  }
+}
