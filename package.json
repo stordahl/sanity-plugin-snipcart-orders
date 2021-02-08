@@ -2,11 +2,14 @@
   "name": "sanity-plugin-snipcart-orders",
   "version": "1.0.0",
   "description": "A dashboard widget for displaying recent orders from Snipcart",
-  "main": "lib/YourPlugin.js",
-  "scripts": {},
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "sanipack build",
+    "prepublishOnly": "sanipack build && sanipack verify"
+  },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/blkcatstudio/sanity-plugin-snipcart-orders.git"
+    "url": "git+ssh://git@github.com/stordahl/sanity-plugin-snipcart-orders.git"
   },
   "keywords": [
     "sanity",
@@ -18,20 +21,20 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "sanipack": "1.0.3",
-    "prettier": "2.2.1",
     "eslint": "7.19.0",
     "eslint-config-prettier": "7.2.0",
     "eslint-config-sanity": "5.0.0",
-    "eslint-plugin-react": "7.22.0"
+    "eslint-plugin-react": "7.22.0",
+    "prettier": "2.2.1",
+    "sanipack": "1.0.6"
   },
   "peerDependencies": {
     "react": "^17.0.0"
   },
   "bugs": {
-    "url": "https://github.com/blkcatstudio/sanity-plugin-snipcart-orders/issues"
+    "url": "https://github.com/stordahl/sanity-plugin-snipcart-orders/issues"
   },
-  "homepage": "https://github.com/blkcatstudio/sanity-plugin-snipcart-orders#readme",
+  "homepage": "https://github.com/stordahl/sanity-plugin-snipcart-orders#readme",
   "prettier": {
     "semi": false,
     "printWidth": 100,

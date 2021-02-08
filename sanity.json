@@ -3,5 +3,11 @@
     "source": "./src",
     "compiled": "./lib"
   },
-  "parts": []
+  "parts": [
+    {
+      "name": "part:snipcart-orders/widget",
+      "implements": "part:@sanity/dashboard/widget",
+      "path": "index.js"
+    }
+  ]
 }

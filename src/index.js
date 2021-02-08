@@ -1,13 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import getIt from 'get-it'
-import jsonResponse from 'get-it/lib/middleware/jsonResponse'
-import promise from 'get-it/lib/middleware/promise'
 import Button from 'part:@sanity/components/buttons/default'
 
 import styles from './styles.css'
-
-const request = getIt([promise(), jsonResponse()])
 
 class SnipcartOrders extends React.Component {
   static propTypes = {
@@ -15,11 +10,16 @@ class SnipcartOrders extends React.Component {
     limit: PropTypes.number,
   }
 
+  static defaultProps = {
+    apiKey: '',
+    limit: 5,
+  }
+
   state = {
     orders: null,
     error: null,
   }
-  getOrders = async () => {
+  handleGetOrders = async () => {
     
     const request = await fetch(`https://app.snipcart.com/api/orders?limit=${this.props.limit}`, {
       headers: {
@@ -33,16 +33,15 @@ class SnipcartOrders extends React.Component {
   }
 
   componentDidMount() {
-    this.getOrders()
+    this.handleGetOrders()
   }
 
   render() {
     const {error, orders} = this.state
   
-    // console.log(orders)
     if (error) {
       return <pre>{JSON.stringify(error, null, 2)}</pre>
-    } else if (orders == null) {
+    } else if (orders === null) {
       return (
         <div className={styles.container}>
         <header className={styles.header}>
@@ -53,6 +52,7 @@ class SnipcartOrders extends React.Component {
         </div>
       </div>
       )
+    // eslint-disable-next-line no-else-return
     } else {
     return (
       <div className={styles.container}>
@@ -63,7 +63,7 @@ class SnipcartOrders extends React.Component {
           {orders.items.map(order =>
             <div key={order.invoiceNumber} className={styles.order}>
                 <div className={styles.avatar}>
-                  <img src={order.user.gravatarUrl} width="60px" height="60px"></img>
+                  <img src={order.user.gravatarUrl} width="60px" height="60px"/>
                 </div>
                 <a title="view invoice" className={styles.link} href={`https://app.snipcart.com/dashboard/orders/${order.token}`}>
                   <h4 className={styles.name}>{order.user.billingAddress.fullName} spent ${order.finalGrandTotal} at {new Date(order.completionDate).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</h4>
@@ -76,7 +76,7 @@ class SnipcartOrders extends React.Component {
           )} 
         </div>
         <div className={styles.footer}>
-            <Button bleed color="primary" kind="simple" onClick={this.getOrders}>
+            <Button bleed color="primary" kind="simple" onClick={this.handleGetOrders}>
               refresh
             </Button>
           </div>
