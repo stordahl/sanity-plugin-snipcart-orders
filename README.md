@@ -1,4 +1,4 @@
-# sanity-plugin-snipcart-orders
+# sanity-plugin-snipcart-orders 🔌
 
 A dashboard widget for displaying recent orders from Snipcart.
 
