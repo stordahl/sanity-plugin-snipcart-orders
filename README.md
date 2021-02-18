@@ -2,7 +2,7 @@
 
 A dashboard widget for displaying recent orders from Snipcart.
 
-This plugin is a part of the Steel headless commerce sudo framework.
+This plugin is a part of the Steel headless commerce tool kit.
 
 ## Installation
 
