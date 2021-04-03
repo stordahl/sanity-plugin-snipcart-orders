@@ -1,47 +1,34 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useState, useEffect } from 'react'
+// import PropTypes from 'prop-types'
 import Button from 'part:@sanity/components/buttons/default'
 
 import styles from './styles.css'
 
-class SnipcartOrders extends React.Component {
-  static propTypes = {
-    apiKey: PropTypes.string,
-    limit: PropTypes.number,
-  }
 
-  static defaultProps = {
-    apiKey: '',
-    limit: 5,
-  }
 
-  state = {
-    orders: null,
-    error: null,
-  }
-  handleGetOrders = async () => {
+const SnipcartOrders = ({ apiKey, limit }) => {
+
+  const [ordersState, setOrdersState] = useState({})
+
+  const handleGetOrders = async () => {
     
-    const request = await fetch(`https://app.snipcart.com/api/orders?limit=${this.props.limit}`, {
+    const request = await fetch(`https://app.snipcart.com/api/orders?limit=${limit}`, {
       headers: {
-          'Authorization': `Basic ${btoa(this.props.apiKey)}`,
+          'Authorization': `Basic ${btoa(apiKey)}`,
           'Accept': 'application/json',
       }
     })
-
-    const orders = await request.json()
-    this.setState({orders})
+    const orders = await request.json(); 
+    // console.log(orders);
+    setOrdersState(orders);
   }
 
-  componentDidMount() {
-    this.handleGetOrders()
-  }
+  useEffect(() => {
+    handleGetOrders();
+  });
 
-  render() {
-    const {error, orders} = this.state
   
-    if (error) {
-      return <pre>{JSON.stringify(error, null, 2)}</pre>
-    } else if (orders === null) {
+    if (ordersState === null || ordersState == {} || ordersState == undefined) {
       return (
         <div className={styles.container}>
         <header className={styles.header}>
@@ -60,7 +47,7 @@ class SnipcartOrders extends React.Component {
           <h2 className={styles.title}>Orders</h2>
         </header>
         <div className={styles.content}>
-          {orders.items.map(order =>
+          {ordersState.items && ordersState.items.map(order =>
             <div key={order.invoiceNumber} className={styles.order}>
                 <div className={styles.avatar}>
                   <img src={order.user.gravatarUrl} width="60px" height="60px"/>
@@ -76,14 +63,14 @@ class SnipcartOrders extends React.Component {
           )} 
         </div>
         <div className={styles.footer}>
-            <Button bleed color="primary" kind="simple" onClick={this.handleGetOrders}>
+            <Button bleed color="primary" kind="simple" onClick={() => handleGetOrders()}>
               refresh
             </Button>
           </div>
       </div>
     ) }
   }
-}
+// }
 
 export default {
   name: 'snipcart-orders',
