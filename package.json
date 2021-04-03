@@ -1,11 +1,12 @@
 {
   "name": "sanity-plugin-snipcart-orders",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "A dashboard widget for displaying recent orders from Snipcart",
   "main": "lib/index.js",
   "scripts": {
     "build": "sanipack build",
-    "prepublishOnly": "sanipack build && sanipack verify"
+    "prepublishOnly": "sanipack build && sanipack verify",
+    "watch": "ts-node-dev --respawn src/index.tsx && sanipack build"
   },
   "repository": {
     "type": "git",
@@ -18,18 +19,28 @@
   "author": "Jacob Størdahl <jacob@stordahl.dev>",
   "license": "MIT",
   "dependencies": {
-    "prop-types": "15.7.2"
+    "@sanity/ui": "^0.33.11",
+    "sanity-secrets": "^0.0.4"
   },
   "devDependencies": {
+    "@sanity/types": "^2.7.4",
+    "@types/node": "^14.14.37",
+    "@types/react": "^17.0.3",
+    "@types/styled-components": "^5.1.9",
     "eslint": "7.19.0",
     "eslint-config-prettier": "7.2.0",
     "eslint-config-sanity": "5.0.0",
     "eslint-plugin-react": "7.22.0",
     "prettier": "2.2.1",
-    "sanipack": "1.0.6"
+    "sanipack": "1.0.6",
+    "ts-node": "^9.1.1",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.3"
   },
   "peerDependencies": {
-    "react": "^17.0.0"
+    "react": "^17.0.0",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.2.3"
   },
   "bugs": {
     "url": "https://github.com/stordahl/sanity-plugin-snipcart-orders/issues"

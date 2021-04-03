@@ -1,6 +1,6 @@
 {
   "paths": {
-    "source": "./src",
+    "source": "./dist",
     "compiled": "./lib"
   },
   "parts": [
